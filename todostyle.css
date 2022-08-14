@@ -67,9 +67,9 @@ h1 {
     font-size: 22px;
     position: relative;
     max-width: 610px;
+    height: 75px;
     border-radius: 25px;
     margin-bottom: 25px;
-    height: 75px;
     background: #eee;
     transition: .3s;
 
@@ -217,11 +217,13 @@ h1 {
     .classmenu {
         width: 100%;
         margin: auto;
+        margin-top: 22px;
+        margin-bottom: 22px;
     }
     .classmenu span {
         padding: 9px 6px;
-        padding-bottom: 0;
-        margin-left: 17px;
+        padding-bottom:0;
+        margin-left: 10px;
         font-size: 27px;
     }
     .classmenu span:first-child {
