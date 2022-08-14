@@ -222,13 +222,19 @@ h1 {
     .classmenu span {
         padding: 9px 6px;
         padding-bottom:0;
-        margin-left: 5px;
+        margin-left: 7px;
         font-size: 27px;
     }
     .classmenu span:first-child {
-        margin-left: -20px
+        margin-left: -44px
     }
     .classmenu span:last-child {
-        margin-right: -20px;
+        margin-right: 32px;
     }
+    .createtask [name=newtask]{
+        margin-left: 0;
+        width: 330px;
+
+    }
+
 }
