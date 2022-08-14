@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <meta name="keywords" content="продуктивность, время, задачи, работа, учеба, дела">
+    <meta name="description" content = "Todo App для твоей продуктивности и отслеживания задач!">
+    <link rel="stylesheet" href="todostyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+    <div class="container">
+
+        <h1><i class="fa fa-tasks" aria-hidden="true" style="font-size: 32px"></i>  Todo App</h3>
+
+        <div class="classmenu">
+            <span class="all"><i class="fa fa-home all" aria-hidden="true" style="font-size: 27px"></i> All</span>
+            <span class="work"><i class="fa fa-briefcase work" aria-hidden="true" style="font-size: 27px"></i> Work</span>
+            <span class="study"><i class="fa fa-book study" aria-hidden="true" style="font-size: 27px"></i> Study</span>
+            <span class="life"><i class="fa fa-globe life" aria-hidden="true" style="font-size: 27px"></i> Life</span>
+        </div>
+
+        <div class="createtask">
+
+            <form name="formtask">
+                <div>
+                    <input type="text" name="newtask" id="nt" placeholder="title task">
+                </div>
+
+                <div class="classclass">
+                    <div class="radio">
+                        <input type="radio" value="work" name="group"> Work
+                        <input type="radio" value="study" name="group"> Study
+                        <input type="radio" value="life" name="group"> Life
+                    </div>
+                    <input type="text" name="classtask" placeholder="work/study/life">
+                </div>
+            </form>
+
+        </div>
+
+        <div class="tasks"> </div>
+
+        <div class="taskbtn">
+            <button class="focustask btn">New task</button>
+            <button class="addtask btn" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+            <button class="cansel btn"><i class="fa fa-share" aria-hidden="true"></i> Cansel</button>
+        </div>
+
+    </div>
+
+    <script src="todo.js"></script>
+
+</body>
+</html>
+
