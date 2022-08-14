@@ -100,6 +100,7 @@ h1 {
 }
 
 .tasks div button {
+    
     position: absolute;
     border: none;   
     padding: 6px 10px; 

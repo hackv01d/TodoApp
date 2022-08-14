@@ -24,7 +24,6 @@ class userTask {
     }
 }
 
-
 let formTask = document.forms.formtask;
 let newTask = formTask.newtask;
 let classTask = formTask.classtask;
@@ -35,7 +34,6 @@ let userError= document.querySelector(".usererror")
 newTask.addEventListener("keydown", (event) => {
     if (event.code == "Enter") event.preventDefault();
 })
-
 let crTask = document.querySelector(".createtask");
 crTask.hidden = true;
 
@@ -82,13 +80,10 @@ let cansel = document.querySelector(".cansel");
 cansel.hidden = true;
 cansel.addEventListener("click", getCansel);
 
-
-
 function getTask(event) {
-    if (!((Array.from(event.target.closest("button").classList).includes("readytask")) || (Array.from(event.target.closest("button").classList).includes("deltask")))) return;
-    if (Array.from(event.target.closest("button").classList).includes("deltask")) {
+    if (event.target.className == 'fa fa-times') {
         event.target.closest("div").remove();
-    } else if (event.target.className!="fa fa-check-square-o"){
+    } else if (event.target.className=='fa fa-square-o'){
         event.target.className = "fa fa-check-square-o";
         event.target.closest("div").remove();
         tasks.append(event.target.closest("div"))
@@ -96,7 +91,7 @@ function getTask(event) {
     } else if(event.target.className=="fa fa-check-square-o") {
         event.target.className = 'fa fa-square-o';
         event.target.closest("div").style.opacity = "1"
-    }
+    } else return;
 }
 tasks.addEventListener("click", getTask);
 
