@@ -1,3 +1,9 @@
+let itemArray;
+if (localStorage.getItem("uuserprogress")) itemArray =  JSON.parse(localStorage.getItem("uuserprogress"));
+else itemArray = [];
+
+
+
 class userTask {
     constructor(name, cls) {
         this.name = name;
@@ -18,6 +24,13 @@ class userTask {
         p.append(span);
         div.append(p);
         div.className = this.userClass[this.cls];
+
+        let itemInfo = [this.name, this.cls, this.userClass[this.cls]];
+        itemArray.push(itemInfo);
+        localStorage.setItem("uuserprogress", JSON.stringify(itemArray));
+
+
+
         div.insertAdjacentHTML("afterbegin", "<button type='button' class='readytask'><i class='fa fa-square-o' aria-hidden='true' style='font-size: 22px'></i></button>");
         div.insertAdjacentHTML("beforeend", "<button type='button'class='deltask'><i class='fa fa-times' aria-hidden='true' style='font-size: 22px'></i></button>");
         return div;
@@ -44,6 +57,7 @@ function createTask() {
     let myTask = new userTask(textNewTask, className);
 
     tasks.prepend(myTask.createDiv);
+
     if (classclass.hidden) Array.from(document.querySelectorAll(".tasks div span")).forEach(i => i.hidden = true);
 
     this.hidden = true;
@@ -80,20 +94,22 @@ let cansel = document.querySelector(".cansel");
 cansel.hidden = true;
 cansel.addEventListener("click", getCansel);
 
+
 function getTask(event) {
-    if (event.target.className == 'fa fa-times') {
+    if (event.target.className == 'fa fa-times') { // удаление
         event.target.closest("div").remove();
-    } else if (event.target.className=='fa fa-square-o'){
+    } else if (event.target.className=='fa fa-square-o'){ //выполнение
         event.target.className = "fa fa-check-square-o";
         event.target.closest("div").remove();
         tasks.append(event.target.closest("div"))
         event.target.closest("div").style.opacity = "0.7";
-    } else if(event.target.className=="fa fa-check-square-o") {
+    } else if(event.target.className=="fa fa-check-square-o") { // отмена выполнения
         event.target.className = 'fa fa-square-o';
         event.target.closest("div").style.opacity = "1"
     } else return;
 }
 tasks.addEventListener("click", getTask);
+
 
 
 function showClass(event) {
@@ -152,6 +168,65 @@ function getRadio(event) {
 
 let radio = document.querySelector(".radio");
 radio.addEventListener("click", getRadio);
+
+
+let myItem;
+if (localStorage.getItem("tasksprogress")){
+    myItem = JSON.parse(localStorage.getItem("tasksprogress"));
+    let itemReady = []
+    for (let j of JSON.parse(localStorage.getItem("tasksprogress")).reverse()) {
+        if (j[3]=="fa fa-check-square-o") {
+            itemReady.push(j);
+            continue;
+        } else tasks.prepend(recoverDiv(j));  
+    }
+    for (let q of itemReady.reverse()) {
+        tasks.append(recoverDiv(q))
+    }
+}
+else {
+    myItem = [];
+}
+
+function recoverDiv(lst) {
+    let div = document.createElement("div");
+    let p = document.createElement("p");
+    let span = document.createElement("span");
+    span.innerHTML = `  ${lst[1]}`;
+    p.innerHTML = lst[0];
+    p.append(span);
+    div.append(p);
+    div.className = lst[2];
+    div.insertAdjacentHTML("afterbegin", "<button type='button' class='readytask'><i class = '" + lst[3] + "' aria-hidden='true' style='font-size: 22px'></i></button>");
+    div.insertAdjacentHTML("beforeend", "<button type='button'class='deltask'><i class='fa fa-times' aria-hidden='true' style='font-size: 22px'></i></button>");
+    if (lst[3]=="fa fa-check-square-o") div.style.opacity = "0.7";
+    return div
+}
+
+let cont = document.querySelector(".container")
+cont.addEventListener("click", () => {
+    myItem = [];
+    if (document.querySelectorAll(".tasks div").length == 0) {
+        localStorage.clear("tasksprogress");
+        return;
+    }
+    let allP  = Array.from(document.querySelectorAll(".tasks div p")).map(i => i.innerHTML.slice(0,  i.innerHTML.indexOf("<")));
+    let allSpan = Array.from(document.querySelectorAll(".tasks div p span"));
+    let allClass = Array.from(document.querySelectorAll(".tasks div")).map(j => j.className)
+    let allReadyTask = Array.from(document.querySelectorAll(".readytask i")).map(q => q.className);
+    for (let k = 0; k<allP.length; k++) {
+        let newitem = [allP[k], allSpan[k].innerHTML, allClass[k], allReadyTask[k]];
+        myItem.push(newitem)
+        localStorage.setItem("tasksprogress", JSON.stringify(myItem));
+    }
+})
+
+
+
+
+
+
+
 
 
 
