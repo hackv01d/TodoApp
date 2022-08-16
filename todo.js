@@ -1,9 +1,3 @@
-let itemArray;
-if (localStorage.getItem("uuserprogress")) itemArray =  JSON.parse(localStorage.getItem("uuserprogress"));
-else itemArray = [];
-
-
-
 class userTask {
     constructor(name, cls) {
         this.name = name;
@@ -24,13 +18,6 @@ class userTask {
         p.append(span);
         div.append(p);
         div.className = this.userClass[this.cls];
-
-        let itemInfo = [this.name, this.cls, this.userClass[this.cls]];
-        itemArray.push(itemInfo);
-        localStorage.setItem("uuserprogress", JSON.stringify(itemArray));
-
-
-
         div.insertAdjacentHTML("afterbegin", "<button type='button' class='readytask'><i class='fa fa-square-o' aria-hidden='true' style='font-size: 22px'></i></button>");
         div.insertAdjacentHTML("beforeend", "<button type='button'class='deltask'><i class='fa fa-times' aria-hidden='true' style='font-size: 22px'></i></button>");
         return div;
@@ -109,8 +96,6 @@ function getTask(event) {
     } else return;
 }
 tasks.addEventListener("click", getTask);
-
-
 
 function showClass(event) {
     if (event.target.closest("span").classList[0]!="all") {
