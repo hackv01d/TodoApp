@@ -1,3 +1,3 @@
 # TodoApp
 
-[TodoApp - pet-project](https://ivantomsk.github.io/TodoApp/)
+[TodoApp - pet-project](https://hackv01d.github.io/TodoApp/)
